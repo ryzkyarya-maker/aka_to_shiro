@@ -79,7 +79,6 @@
   .nav-links a:hover{color:var(--neon-glow);text-shadow:0 0 12px var(--neon)}
   .nav-links a:hover::after{width:100%}
 
-  /* TikTok nav icon */
   .nav-tiktok{
     display:inline-flex;align-items:center;gap:.35rem;
     color:var(--white);text-decoration:none;font-size:.85rem;
@@ -249,19 +248,19 @@
     border:1px solid var(--border);
     box-shadow:0 0 40px rgba(204,0,0,.25);
     position:relative;
-    background:linear-gradient(135deg,var(--bg3),#0f0000);
-    display:flex;align-items:center;justify-content:center;
   }
-  .about-img-wrap::before{
-    content:'';position:absolute;inset:0;
-    background:repeating-linear-gradient(45deg,transparent,transparent 25px,rgba(204,0,0,.04) 25px,rgba(204,0,0,.04) 50px);
+  .about-img-wrap img{
+    width:100%;height:100%;object-fit:cover;
+    display:block;
+    border-radius:20px;
+    transition:transform .4s ease;
   }
-  .about-placeholder{
-    font-family:var(--font-head);font-size:.8rem;letter-spacing:.2em;
-    color:rgba(204,0,0,.35);text-align:center;z-index:1;padding:2rem;
-    display:flex;flex-direction:column;align-items:center;gap:1rem;
+  .about-img-wrap:hover img{transform:scale(1.04)}
+  .about-img-wrap::after{
+    content:'';position:absolute;inset:0;border-radius:20px;
+    background:linear-gradient(135deg,rgba(204,0,0,.08) 0%,transparent 60%);
+    pointer-events:none;
   }
-  .about-placeholder .ph-icon{font-size:3rem;opacity:.3}
   .about-content h2{
     font-family:var(--font-head);font-size:clamp(1.5rem,3vw,2.2rem);
     font-weight:900;margin-bottom:.5rem;
@@ -462,7 +461,6 @@
   .join-inner{max-width:700px;margin:0 auto;text-align:center}
   .join-desc{color:#cc9999;font-size:1rem;line-height:1.7;margin-bottom:2.5rem;font-style:italic}
 
-  /* Social buttons row */
   .social-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
 
   .btn-discord{
@@ -481,7 +479,6 @@
     box-shadow:0 0 60px rgba(88,101,242,.8),0 12px 40px rgba(0,0,0,.5);
   }
 
-  /* ✦ TikTok button */
   .btn-tiktok{
     display:inline-flex;align-items:center;gap:.8rem;
     padding:1.1rem 2.5rem;
@@ -582,7 +579,6 @@
     <li><a href="#" onclick="showPage('gallery');return false">GALLERY</a></li>
     <li><a href="#" onclick="showPage('join');return false">JOIN US</a></li>
     <li>
-      <!-- ✦ TikTok nav icon -->
       <a href="https://www.tiktok.com/@kamex_family?_r=1&_t=ZS-95wW8hZTcZD" target="_blank" class="nav-tiktok" title="TikTok KMF">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
@@ -635,12 +631,13 @@
     <div class="glow-line fade-in"></div>
     <p class="section-sub fade-in">Kenali lebih dalam komunitas kami</p>
     <div class="about-grid">
+      <!-- ✦ About image replaced with the provided URL -->
       <div class="about-img-wrap fade-in">
-        <div class="about-placeholder">
-          <span class="ph-icon">🏆</span>
-          <span>COMMUNITY IMAGE</span>
-          <span style="font-size:.65rem;opacity:.5">PLACEHOLDER</span>
-        </div>
+        <img
+          src="https://i.ibb.co.com/H06ytb0/6a4e58f7-93f9-4899-a6a6-9fc10b7e03a3.png"
+          alt="KAMEX FAMILY Community"
+          onerror="this.parentElement.innerHTML='<div class=\'about-placeholder\'><span class=\'ph-icon\'>🏆</span><span>COMMUNITY IMAGE</span></div>'"
+        />
       </div>
       <div class="about-content fade-in">
         <span class="about-badge">📅 BERDIRI 01 MEI 2026</span>
@@ -763,7 +760,6 @@
         Follow juga TikTok kami untuk konten terbaru! 🚀
       </p>
 
-      <!-- ✦ Social buttons row -->
       <div class="social-btns fade-in">
         <a href="https://discord.gg/CvKMvcZJyd" target="_blank" class="btn-discord">
           <span class="discord-icon">💬</span> JOIN DISCORD
@@ -778,10 +774,7 @@
         </a>
       </div>
 
-      <!-- QR Cards: Discord + TikTok side by side -->
       <div class="fade-in" style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;">
-
-        <!-- Discord QR -->
         <div class="qr-wrap" style="margin-bottom:0;">
           <img src="https://i.ibb.co/N6LJ3Myj/Screenshot-2026-04-28-21-18-44-430-com-discord-edit.jpg"
                alt="Discord QR Code" class="qr-img"
@@ -789,7 +782,6 @@
           <div class="qr-label">💬 SCAN TO JOIN DISCORD</div>
         </div>
 
-        <!-- TikTok QR/Barcode -->
         <div class="qr-wrap" style="margin-bottom:0;">
           <div style="width:200px;height:200px;border-radius:12px;overflow:hidden;margin:0 auto;box-shadow:0 0 20px rgba(255,45,85,.3);">
             <img src="https://i.ibb.co/67TMHdK4/Screenshot-2026-04-29-19-26-35-465-com-ss-android-ugc-trill-edit.jpg"
@@ -798,7 +790,6 @@
           </div>
           <div class="qr-label" style="color:#ff2d55;">🎵 SCAN TO FOLLOW TIKTOK</div>
         </div>
-
       </div>
 
       <div class="map-placeholder fade-in">
@@ -815,7 +806,6 @@
 <footer>
   <div class="footer-logo">KAMEX FAMILY</div>
   <div class="footer-tagline">Solidaritas Tinggi • Kekeluargaan Kuat • Roblox Community</div>
-  <!-- ✦ Footer social links -->
   <div class="footer-socials">
     <a href="https://discord.gg/CvKMvcZJyd" target="_blank" class="footer-social-link discord">
       💬 DISCORD
@@ -975,4 +965,4 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('o
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 </script>
 </body>
-          </html>
+</html>
