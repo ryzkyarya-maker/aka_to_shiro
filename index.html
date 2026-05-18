@@ -504,22 +504,56 @@
   .tiktok-icon svg{width:100%;height:100%;fill:#fff}
 
   .discord-icon{font-size:1.4rem}
-  .qr-wrap{
-    background:var(--card);border:1px solid var(--border);
-    border-radius:20px;padding:2.5rem;display:inline-block;
-    margin-bottom:3rem;
-    box-shadow:0 0 30px rgba(204,0,0,.15);transition:box-shadow .3s;
+
+  /* ═══ MAP SECTION ═══ */
+  .map-section{
+    width:100%;max-width:700px;margin:0 auto;
+    border-radius:20px;overflow:hidden;
+    border:2px solid var(--border);
+    box-shadow:0 0 40px rgba(204,0,0,.3),0 0 80px rgba(204,0,0,.1);
+    position:relative;
+    transition:box-shadow .3s;
   }
-  .qr-wrap:hover{box-shadow:0 0 50px rgba(204,0,0,.35)}
-  .qr-img{width:200px;height:auto;border-radius:12px;box-shadow:0 0 20px rgba(204,0,0,.3)}
-  .qr-label{font-size:.8rem;font-family:var(--font-head);letter-spacing:.15em;color:var(--neon-glow);margin-top:1rem}
-  .map-placeholder{
-    width:100%;max-width:700px;margin:0 auto;height:250px;border-radius:16px;
-    background:linear-gradient(135deg,var(--bg3),#0f0000);border:1px solid var(--border);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;
-    color:rgba(204,0,0,.35);font-family:var(--font-head);font-size:.8rem;letter-spacing:.2em;
+  .map-section:hover{
+    box-shadow:0 0 60px rgba(255,34,34,.5),0 0 100px rgba(204,0,0,.2);
   }
-  .map-placeholder .ph-icon{font-size:2.5rem;opacity:.3}
+  .map-section img{
+    width:100%;display:block;
+    transition:transform .4s ease;
+  }
+  .map-section:hover img{transform:scale(1.02)}
+  .map-label{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(10,0,0,.7) 60%,transparent 100%);
+    padding:1.5rem 1.5rem 1.2rem;
+    display:flex;align-items:flex-end;justify-content:space-between;
+    flex-wrap:wrap;gap:.5rem;
+  }
+  .map-name{
+    font-family:var(--font-head);font-size:clamp(1rem,3vw,1.5rem);font-weight:900;
+    background:linear-gradient(135deg,var(--white),var(--neon-glow));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    letter-spacing:.15em;
+    filter:drop-shadow(0 0 10px rgba(255,34,34,.6));
+  }
+  .map-tag{
+    font-family:var(--font-head);font-size:.65rem;letter-spacing:.2em;
+    color:var(--accent);border:1px solid rgba(255,136,0,.4);
+    padding:.25rem .7rem;border-radius:20px;background:rgba(255,136,0,.1);
+    white-space:nowrap;
+  }
+  .map-pin-anim{
+    position:absolute;top:16px;right:16px;
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(204,0,0,.3);border:2px solid var(--neon);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    animation:pinPulse 2s ease-in-out infinite;
+  }
+  @keyframes pinPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(204,0,0,.6)}
+    50%{box-shadow:0 0 0 10px rgba(204,0,0,0)}
+  }
 
   /* FOOTER */
   footer{
@@ -631,7 +665,6 @@
     <div class="glow-line fade-in"></div>
     <p class="section-sub fade-in">Kenali lebih dalam komunitas kami</p>
     <div class="about-grid">
-      <!-- ✦ About image replaced with the provided URL -->
       <div class="about-img-wrap fade-in">
         <img
           src="https://i.ibb.co.com/H06ytb0/6a4e58f7-93f9-4899-a6a6-9fc10b7e03a3.png"
@@ -780,29 +813,35 @@
         </a>
       </div>
 
-      <div class="fade-in" style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;">
-        <div class="qr-wrap" style="margin-bottom:0;">
+      <!-- Discord QR only -->
+      <div class="fade-in" style="display:flex;justify-content:center;margin-bottom:3rem;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;display:inline-block;box-shadow:0 0 30px rgba(204,0,0,.15);transition:box-shadow .3s;" onmouseover="this.style.boxShadow='0 0 50px rgba(204,0,0,.35)'" onmouseout="this.style.boxShadow='0 0 30px rgba(204,0,0,.15)'">
           <img src="https://i.ibb.co/N6LJ3Myj/Screenshot-2026-04-28-21-18-44-430-com-discord-edit.jpg"
-               alt="Discord QR Code" class="qr-img"
-               style="display:block;"/>
-          <div class="qr-label">💬 SCAN TO JOIN DISCORD</div>
-        </div>
-
-        <div class="qr-wrap" style="margin-bottom:0;">
-          <div style="width:200px;height:200px;border-radius:12px;overflow:hidden;margin:0 auto;box-shadow:0 0 20px rgba(255,45,85,.3);">
-            <img src="https://i.ibb.co/67TMHdK4/Screenshot-2026-04-29-19-26-35-465-com-ss-android-ugc-trill-edit.jpg"
-                 alt="TikTok Barcode"
-                 style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"/>
-          </div>
-          <div class="qr-label" style="color:#ff2d55;">🎵 SCAN TO FOLLOW TIKTOK</div>
+               alt="Discord QR Code"
+               style="width:200px;height:auto;border-radius:12px;box-shadow:0 0 20px rgba(204,0,0,.3);display:block;"/>
+          <div style="font-size:.8rem;font-family:var(--font-head);letter-spacing:.15em;color:var(--neon-glow);margin-top:1rem;text-align:center;">💬 SCAN TO JOIN DISCORD</div>
         </div>
       </div>
 
-      <div class="map-placeholder fade-in">
-        <span class="ph-icon">🗺️</span>
-        <span>MAP — COMING SOON</span>
-        <span style="font-size:.65rem;opacity:.4">Link map nyusul...</span>
+      <!-- MAP — KAMEX CLUB -->
+      <div class="map-section fade-in">
+        <div class="map-pin-anim">📍</div>
+        <img
+          src="https://i.ibb.co.com/pryCS9J4/1000015718.png"
+          alt="KAMEX CLUB Map"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        />
+        <!-- fallback -->
+        <div style="display:none;width:100%;height:250px;background:linear-gradient(135deg,var(--bg3),#0f0000);align-items:center;justify-content:center;flex-direction:column;gap:.8rem;color:rgba(204,0,0,.35);font-family:var(--font-head);font-size:.8rem;letter-spacing:.2em;">
+          <span style="font-size:2.5rem;opacity:.3">🗺️</span>
+          <span>MAP — KAMEX CLUB</span>
+        </div>
+        <div class="map-label">
+          <div class="map-name">🗺️ KAMEX CLUB</div>
+          <span class="map-tag">📍 LOCATION</span>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -971,4 +1010,4 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('o
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 </script>
 </body>
-</html>
+          </html>
