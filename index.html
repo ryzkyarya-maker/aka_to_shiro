@@ -628,6 +628,54 @@
     pointer-events:none;z-index:0;
     background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(204,0,0,.015) 2px,rgba(204,0,0,.015) 4px);
   }
+
+  /* MUSIC PLAYER */
+  #music-btn{
+    position:fixed;bottom:28px;right:28px;z-index:2000;
+    width:52px;height:52px;border-radius:50%;
+    background:linear-gradient(135deg,var(--neon),#880000);
+    border:2px solid rgba(255,100,100,.4);
+    box-shadow:0 0 20px rgba(204,0,0,.6),0 4px 15px rgba(0,0,0,.5);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .3s;
+    animation:musicPulse 2s ease-in-out infinite;
+  }
+  #music-btn:hover{
+    transform:scale(1.12);
+    box-shadow:0 0 35px rgba(255,34,34,.9),0 6px 20px rgba(0,0,0,.6);
+  }
+  #music-btn.paused{
+    animation:none;
+    background:linear-gradient(135deg,#330000,#1a0000);
+    box-shadow:0 0 10px rgba(204,0,0,.3),0 4px 15px rgba(0,0,0,.5);
+  }
+  @keyframes musicPulse{
+    0%,100%{box-shadow:0 0 20px rgba(204,0,0,.6),0 4px 15px rgba(0,0,0,.5)}
+    50%{box-shadow:0 0 35px rgba(255,34,34,.9),0 0 60px rgba(204,0,0,.3),0 4px 15px rgba(0,0,0,.5)}
+  }
+  #music-btn svg{width:22px;height:22px;fill:#fff;transition:.2s}
+  .music-tooltip{
+    position:fixed;bottom:90px;right:28px;z-index:2000;
+    background:rgba(10,0,0,.92);border:1px solid var(--border);
+    color:var(--white);font-family:var(--font-head);font-size:.65rem;
+    letter-spacing:.12em;padding:.4rem .9rem;border-radius:20px;
+    white-space:nowrap;pointer-events:none;
+    opacity:0;transform:translateY(6px);
+    transition:opacity .3s,transform .3s;
+    box-shadow:0 0 15px rgba(204,0,0,.3);
+  }
+  #music-btn:hover ~ .music-tooltip{opacity:1;transform:translateY(0)}
+  /* vinyl spin rings */
+  .music-ring{
+    position:absolute;border-radius:50%;border:1px solid rgba(204,0,0,.4);
+    animation:ringExpand 2s ease-out infinite;pointer-events:none;
+  }
+  .music-ring:nth-child(2){animation-delay:.6s}
+  .music-ring:nth-child(3){animation-delay:1.2s}
+  @keyframes ringExpand{
+    0%{width:52px;height:52px;opacity:.8;top:0;left:0}
+    100%{width:90px;height:90px;opacity:0;top:-19px;left:-19px}
+  }
 </style>
 </head>
 <body>
@@ -895,6 +943,23 @@
 </section>
 </div>
 
+<!-- AUDIO -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://international-chocolate-x5n9yho8lw.edgeone.app/kamex%20family.mp3" type="audio/mpeg"/>
+</audio>
+
+<!-- MUSIC BUTTON -->
+<div style="position:fixed;bottom:28px;right:28px;z-index:2000">
+  <div class="music-ring"></div>
+  <div class="music-ring"></div>
+  <div class="music-ring"></div>
+  <div id="music-btn" onclick="toggleMusic()" title="Music">
+    <svg id="music-icon-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    <svg id="music-icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </div>
+  <div class="music-tooltip">🎵 KMF SOUNDTRACK</div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">KAMEX FAMILY</div>
@@ -921,7 +986,50 @@
 </div>
 
 <script>
-/* ── Gallery data ── */
+/* MUSIC */
+const audio=document.getElementById('bgMusic');
+const btn=document.getElementById('music-btn');
+const iconPlay=document.getElementById('music-icon-play');
+const iconPause=document.getElementById('music-icon-pause');
+let musicStarted=false;
+
+function toggleMusic(){
+  if(audio.paused){
+    audio.play().then(()=>{
+      btn.classList.remove('paused');
+      iconPlay.style.display='none';
+      iconPause.style.display='block';
+    }).catch(()=>{});
+  } else {
+    audio.pause();
+    btn.classList.add('paused');
+    iconPlay.style.display='block';
+    iconPause.style.display='none';
+  }
+}
+
+// Autoplay on first user interaction
+function tryAutoplay(){
+  if(musicStarted)return;
+  musicStarted=true;
+  audio.volume=0.5;
+  audio.play().then(()=>{
+    btn.classList.remove('paused');
+    iconPlay.style.display='none';
+    iconPause.style.display='block';
+  }).catch(()=>{
+    btn.classList.add('paused');
+  });
+  document.removeEventListener('click',tryAutoplay);
+  document.removeEventListener('touchstart',tryAutoplay);
+}
+document.addEventListener('click',tryAutoplay);
+document.addEventListener('touchstart',tryAutoplay);
+
+// Start paused state visually
+btn.classList.add('paused');
+
+
 const GALLERY_IMAGES = [
   'https://i.ibb.co.com/V0Ypbyqw/1000021893.jpg',
   'https://i.ibb.co.com/G4f1j5Bw/IMG-20260518-221845.jpg',
@@ -1081,4 +1189,4 @@ function closeLightbox(e){
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open')});
 </script>
 </body>
-          </html>
+</html>
