@@ -1,1192 +1,333 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>KAMEX FAMILY | KMF Community</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --neon: #CC0000;
-    --neon-bright: #FF2222;
-    --neon-glow: #FF6666;
-    --cyan: #FF4444;
-    --accent: #FF8800;
-    --bg: #0A0000;
-    --bg2: #110000;
-    --bg3: #1A0000;
-    --bg4: #0F0000;
-    --white: #FFF0F0;
-    --muted: #886666;
-    --card: rgba(204,0,0,0.07);
-    --border: rgba(204,0,0,0.35);
-    --font-head: 'Orbitron', sans-serif;
-    --font-body: 'Poppins', sans-serif;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);
-    color:var(--white);
-    font-family:var(--font-body);
-    overflow-x:hidden;
-  }
-
-  ::-webkit-scrollbar{width:6px}
-  ::-webkit-scrollbar-track{background:#110000}
-  ::-webkit-scrollbar-thumb{background:var(--neon);border-radius:3px}
-
-  /* PARTICLES */
-  #particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
-  .particle{position:absolute;width:2px;height:2px;background:var(--neon-bright);border-radius:50%;animation:float linear infinite;opacity:0}
-  @keyframes float{
-    0%{transform:translateY(100vh) translateX(0);opacity:0}
-    10%{opacity:.8}
-    90%{opacity:.4}
-    100%{transform:translateY(-100px) translateX(60px);opacity:0}
-  }
-
-  /* NAVBAR */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:1000;
-    background:rgba(10,0,0,.88);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);
-    padding:0 2rem;
-    height:70px;
-    display:flex;align-items:center;justify-content:space-between;
-    transition:background .3s;
-  }
-  nav.scrolled{background:rgba(10,0,0,.97)}
-  .nav-logo{
-    font-family:var(--font-head);
-    font-size:1.2rem;font-weight:900;
-    background:linear-gradient(135deg,var(--neon-bright),var(--accent));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    letter-spacing:.15em;cursor:pointer;
-  }
-  .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-  .nav-links a{
-    color:var(--white);text-decoration:none;font-size:.85rem;
-    font-family:var(--font-head);letter-spacing:.1em;
-    font-weight:600;transition:color .2s,text-shadow .2s;position:relative;
-  }
-  .nav-links a::after{
-    content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
-    background:linear-gradient(90deg,var(--neon),var(--accent));
-    transition:width .3s;border-radius:2px;
-  }
-  .nav-links a:hover{color:var(--neon-glow);text-shadow:0 0 12px var(--neon)}
-  .nav-links a:hover::after{width:100%}
-
-  .nav-tiktok{
-    display:inline-flex;align-items:center;gap:.35rem;
-    color:var(--white);text-decoration:none;font-size:.85rem;
-    font-family:var(--font-head);letter-spacing:.1em;font-weight:600;
-    transition:color .2s,text-shadow .2s;
-  }
-  .nav-tiktok:hover{color:#ff2d55;text-shadow:0 0 12px #ff2d55}
-  .nav-tiktok svg{width:14px;height:14px;fill:currentColor;vertical-align:middle}
-
-  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
-  .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:.3s}
-  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .hamburger.open span:nth-child(2){opacity:0}
-  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-  @media(max-width:768px){
-    .nav-links{
-      position:fixed;top:70px;left:0;right:0;background:rgba(10,0,0,.98);
-      flex-direction:column;gap:0;padding:1rem 0;
-      transform:translateY(-120%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="description" content="DOJO AKA TO SHIRO - Dojo Karate profesional. Discipline, Respect, Spirit. Dipimpin Senpai Andi Taufik.">
+  <meta name="theme-color" content="#090909">
+  <meta property="og:title" content="DOJO AKA TO SHIRO | Dojo Karate">
+  <meta property="og:image" content="https://i.ibb.co.com/DHK9KGyV/1000050714-removebg-preview.png">
+  <link rel="icon" href="https://i.ibb.co.com/DHK9KGyV/1000050714-removebg-preview.png">
+  <title>DOJO AKA TO SHIRO | Discipline • Respect • Spirit</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --red:#FF0000; --white:#FFFFFF; --black:#090909; --dark:#1A1A1A;
+      --glass: rgba(9,9,9,0.7); --neon: 0 0 18px rgba(255,0,0,0.8);
     }
-    .nav-links.open{transform:translateY(0)}
-    .nav-links a,.nav-tiktok{display:block;padding:.8rem 2rem;font-size:.9rem}
-    .hamburger{display:flex}
-  }
-
-  /* SECTIONS COMMON */
-  section{position:relative;z-index:1}
-  .section-pad{padding:6rem 2rem}
-  .container{max-width:1200px;margin:0 auto}
-  .section-title{
-    font-family:var(--font-head);font-size:clamp(1.6rem,4vw,2.8rem);
-    font-weight:900;text-align:center;margin-bottom:.5rem;
-    background:linear-gradient(135deg,var(--white),var(--neon-glow));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  }
-  .section-sub{text-align:center;color:var(--muted);margin-bottom:3.5rem;font-size:.95rem;letter-spacing:.05em}
-  .glow-line{
-    width:80px;height:3px;margin:.8rem auto 1.5rem;
-    background:linear-gradient(90deg,var(--neon),var(--accent));
-    border-radius:2px;box-shadow:0 0 20px var(--neon);
-  }
-
-  /* FADE IN */
-  .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-  .fade-in.visible{opacity:1;transform:translateY(0)}
-
-  /* ═══ HOME ═══ */
-  #home{
-    min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:6rem 2rem 2rem;
-    background:radial-gradient(ellipse at 50% 0%, rgba(204,0,0,.22) 0%, transparent 65%),
-               radial-gradient(ellipse at 20% 80%, rgba(255,80,0,.06) 0%, transparent 50%),
-               var(--bg);
-  }
-  .hero-logo{
-    width:min(220px,60vw);height:min(220px,60vw);
-    border-radius:50%;
-    border:2px solid var(--border);
-    box-shadow:0 0 40px rgba(204,0,0,.6),0 0 80px rgba(204,0,0,.25),inset 0 0 30px rgba(204,0,0,.1);
-    margin-bottom:2rem;
-    animation:logoPulse 3s ease-in-out infinite;
-    object-fit:cover;
-    background:#1a0000;
-  }
-  @keyframes logoPulse{
-    0%,100%{box-shadow:0 0 40px rgba(204,0,0,.6),0 0 80px rgba(204,0,0,.25),inset 0 0 30px rgba(204,0,0,.1)}
-    50%{box-shadow:0 0 60px rgba(255,34,34,.9),0 0 120px rgba(204,0,0,.4),inset 0 0 40px rgba(204,0,0,.2)}
-  }
-  .hero-tag{
-    font-family:var(--font-head);font-size:.75rem;letter-spacing:.3em;
-    color:var(--neon-glow);text-transform:uppercase;margin-bottom:1rem;
-    border:1px solid var(--border);padding:.3rem 1rem;border-radius:20px;
-    background:rgba(204,0,0,.1);display:inline-block;
-  }
-  .hero-title{
-    font-family:var(--font-head);
-    font-size:clamp(2rem,7vw,5rem);
-    font-weight:900;line-height:1.05;
-    background:linear-gradient(135deg,#fff 30%,var(--neon-glow) 65%,var(--accent));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    margin-bottom:1.2rem;
-    animation:titleGlow 3s ease-in-out infinite alternate;
-  }
-  @keyframes titleGlow{
-    from{filter:drop-shadow(0 0 20px rgba(204,0,0,.4))}
-    to{filter:drop-shadow(0 0 40px rgba(255,34,34,.8))}
-  }
-  .hero-sub{
-    font-size:clamp(.9rem,2.5vw,1.15rem);
-    color:#cc9999;max-width:600px;margin:0 auto 2.5rem;
-    font-style:italic;line-height:1.7;
-  }
-  .btn-cta{
-    display:inline-block;
-    padding:1rem 2.5rem;
-    font-family:var(--font-head);font-size:.9rem;font-weight:700;
-    letter-spacing:.15em;text-decoration:none;color:#fff;
-    background:linear-gradient(135deg,var(--neon),#880000);
-    border-radius:40px;
-    border:1px solid rgba(255,255,255,.15);
-    box-shadow:0 0 30px rgba(204,0,0,.5),0 4px 20px rgba(0,0,0,.4);
-    transition:all .3s;position:relative;overflow:hidden;
-  }
-  .btn-cta::before{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
-    opacity:0;transition:opacity .3s;
-  }
-  .btn-cta:hover{
-    transform:translateY(-3px) scale(1.04);
-    box-shadow:0 0 50px rgba(255,34,34,.8),0 8px 30px rgba(0,0,0,.5);
-  }
-  .btn-cta:hover::before{opacity:1}
-
-  /* HOME SLIDER */
-  .home-slider-wrap{
-    width:100%;max-width:1100px;margin:3.5rem auto 0;
-    position:relative;overflow:hidden;border-radius:16px;
-    border:1px solid var(--border);
-    box-shadow:0 0 40px rgba(204,0,0,.2);
-  }
-  .home-slider{display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1)}
-  .home-slide{
-    min-width:100%;height:320px;
-    background:linear-gradient(135deg,var(--bg3),#0f0000);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--font-head);color:rgba(204,0,0,.4);font-size:1rem;
-    letter-spacing:.2em;flex-direction:column;gap:.5rem;position:relative;
-    overflow:hidden;
-  }
-  .home-slide img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-  .home-slide::before{
-    content:'';position:absolute;inset:0;
-    background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(204,0,0,.03) 30px,rgba(204,0,0,.03) 60px);
-    z-index:1;pointer-events:none;
-  }
-  .home-slide .slide-icon{font-size:2rem;opacity:.3;z-index:2}
-  .home-slide .slide-text{z-index:2}
-  .slider-dots{
-    display:flex;justify-content:center;gap:8px;
-    padding:.8rem;background:rgba(10,0,0,.8);
-  }
-  .sdot{
-    width:8px;height:8px;border-radius:50%;
-    background:rgba(204,0,0,.3);transition:.3s;cursor:pointer;
-  }
-  .sdot.active{background:var(--neon);box-shadow:0 0 10px var(--neon);width:20px;border-radius:4px}
-  .slider-arrow{
-    position:absolute;top:50%;transform:translateY(-50%);
-    background:rgba(10,0,0,.8);border:1px solid var(--border);
-    color:var(--white);font-size:1.2rem;
-    width:40px;height:40px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:.3s;z-index:10;
-  }
-  .slider-arrow:hover{background:var(--neon);box-shadow:0 0 15px var(--neon)}
-  .slider-arrow.prev{left:12px}
-  .slider-arrow.next{right:12px}
-
-  /* ═══ ABOUT ═══ */
-  #about{
-    background:linear-gradient(180deg,var(--bg) 0%,var(--bg3) 50%,var(--bg) 100%);
-  }
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-  @media(max-width:900px){.about-grid{grid-template-columns:1fr}}
-  .about-img-wrap{
-    width:100%;aspect-ratio:1;max-width:450px;margin:0 auto;
-    border-radius:20px;overflow:hidden;
-    border:1px solid var(--border);
-    box-shadow:0 0 40px rgba(204,0,0,.25);
-    position:relative;
-  }
-  .about-img-wrap img{
-    width:100%;height:100%;object-fit:cover;
-    display:block;
-    border-radius:20px;
-    transition:transform .4s ease;
-  }
-  .about-img-wrap:hover img{transform:scale(1.04)}
-  .about-img-wrap::after{
-    content:'';position:absolute;inset:0;border-radius:20px;
-    background:linear-gradient(135deg,rgba(204,0,0,.08) 0%,transparent 60%);
-    pointer-events:none;
-  }
-  .about-content h2{
-    font-family:var(--font-head);font-size:clamp(1.5rem,3vw,2.2rem);
-    font-weight:900;margin-bottom:.5rem;
-    background:linear-gradient(135deg,var(--white),var(--neon-glow));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  }
-  .about-badge{
-    display:inline-block;font-size:.75rem;font-family:var(--font-head);
-    letter-spacing:.2em;color:var(--accent);
-    border:1px solid rgba(255,136,0,.3);padding:.2rem .8rem;border-radius:20px;
-    background:rgba(255,136,0,.05);margin-bottom:1.2rem;
-  }
-  .about-desc{color:#ccaaaa;line-height:1.8;margin-bottom:1.5rem;font-size:.95rem}
-  .about-highlight{
-    background:linear-gradient(135deg,rgba(204,0,0,.15),rgba(255,136,0,.05));
-    border-left:3px solid var(--neon);padding:1rem 1.2rem;
-    border-radius:0 10px 10px 0;margin-bottom:2rem;
-    font-style:italic;color:var(--white);font-size:.95rem;line-height:1.7;
-  }
-  .vm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-  @media(max-width:600px){.vm-grid{grid-template-columns:1fr}}
-  .vm-card{
-    background:var(--card);border:1px solid var(--border);
-    border-radius:12px;padding:1.2rem;text-align:center;
-    transition:transform .3s,box-shadow .3s;
-  }
-  .vm-card:hover{transform:translateY(-5px);box-shadow:0 0 20px rgba(204,0,0,.3)}
-  .vm-icon{font-size:1.8rem;margin-bottom:.5rem}
-  .vm-card h4{font-family:var(--font-head);font-size:.75rem;letter-spacing:.1em;color:var(--neon-glow);margin-bottom:.3rem}
-  .vm-card p{font-size:.8rem;color:#997777;line-height:1.5}
-
-  /* ═══ MEMBERS ═══ */
-  #members{background:var(--bg)}
-  .members-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-    gap:1.5rem;
-  }
-  .member-card{
-    background:linear-gradient(145deg,var(--card),rgba(204,0,0,.03));
-    border:1px solid var(--border);border-radius:16px;
-    padding:1.8rem 1.2rem;text-align:center;
-    transition:transform .35s,box-shadow .35s;
-    position:relative;overflow:hidden;
-  }
-  .member-card::before{
-    content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-    background:radial-gradient(circle,rgba(204,0,0,.08) 0%,transparent 60%);
-    opacity:0;transition:opacity .3s;
-  }
-  .member-card:hover{
-    transform:translateY(-8px) scale(1.02);
-    box-shadow:0 0 30px rgba(204,0,0,.4),0 12px 40px rgba(0,0,0,.4);
-  }
-  .member-card:hover::before{opacity:1}
-  .member-photo{
-    width:100px;height:100px;border-radius:50%;margin:0 auto 1rem;
-    border:2px solid var(--border);
-    background:linear-gradient(135deg,#1a0000,#0f0000);
-    display:flex;align-items:center;justify-content:center;
-    font-size:2rem;
-    box-shadow:0 0 20px rgba(204,0,0,.3);
-    transition:box-shadow .3s;overflow:hidden;
-  }
-  .member-card:hover .member-photo{box-shadow:0 0 30px rgba(204,0,0,.6)}
-  .member-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-  .member-role{
-    font-family:var(--font-head);font-size:.65rem;letter-spacing:.2em;
-    color:var(--neon-glow);margin-bottom:.4rem;display:block;
-  }
-  .member-name{
-    font-family:var(--font-head);font-size:.9rem;font-weight:700;
-    color:var(--white);margin-bottom:.3rem;
-  }
-  .member-status{
-    font-size:.75rem;color:var(--muted);
-    font-style:italic;
-  }
-  .member-badge{
-    position:absolute;top:12px;right:12px;
-    font-size:1.1rem;
-  }
-  .dev-badge{
-    display:inline-flex;align-items:center;gap:.3rem;
-    font-family:var(--font-head);font-size:.6rem;letter-spacing:.12em;
-    color:var(--accent);
-    border:1px solid rgba(255,136,0,.4);padding:.15rem .5rem;border-radius:10px;
-    background:rgba(255,136,0,.08);margin-top:.3rem;
-  }
-  .soon-card .member-photo{opacity:.4}
-  .soon-card .member-name{color:var(--muted)}
-  .soon-label{
-    display:inline-block;font-size:.7rem;font-family:var(--font-head);
-    color:#553333;border:1px solid #331111;padding:.1rem .5rem;border-radius:10px;
-    letter-spacing:.1em;
-  }
-
-  /* ═══ GALLERY ═══ */
-  #gallery{
-    background:linear-gradient(180deg,var(--bg) 0%,var(--bg3) 50%,var(--bg) 100%);
-  }
-  .gallery-border-anim{
-    max-width:920px;margin:0 auto 2rem;
-    padding:3px;border-radius:18px;
-    position:relative;
-    background:conic-gradient(from 0deg, #CC0000, #FF4400, #FF8800, #FF2222, #880000, #CC0000);
-    animation:spinBorder 3s linear infinite;
-    box-shadow:0 0 30px rgba(204,0,0,.5),0 0 60px rgba(204,0,0,.25);
-  }
-  @keyframes spinBorder{
-    from{background:conic-gradient(from 0deg, #CC0000, #FF4400, #FF8800, #FF2222, #880000, #CC0000)}
-    to{background:conic-gradient(from 360deg, #CC0000, #FF4400, #FF8800, #FF2222, #880000, #CC0000)}
-  }
-  .gallery-border-anim::before{
-    content:'';position:absolute;inset:0;border-radius:18px;
-    background:conic-gradient(from var(--angle,0deg), transparent 0deg, #FF2222 60deg, #FF8800 120deg, transparent 180deg);
-    animation:rotateBorder 2.5s linear infinite;z-index:0;
-  }
-  @keyframes rotateBorder{to{--angle:360deg}}
-  @property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
-  .gallery-slider-wrap{
-    position:relative;overflow:hidden;border-radius:15px;
-    background:var(--bg);z-index:1;
-  }
-  .gallery-slider{display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1)}
-  .gallery-slide{
-    min-width:100%;height:420px;
-    background:linear-gradient(135deg,var(--bg3),#0f0000);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;position:relative;overflow:hidden;
-  }
-  .gallery-slide img{
-    width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
-    transition:transform .4s ease;
-  }
-  .gallery-slide:hover img{transform:scale(1.04)}
-  .gallery-slide::before{
-    content:'';position:absolute;inset:0;
-    background:repeating-linear-gradient(45deg,transparent,transparent 35px,rgba(204,0,0,.04) 35px,rgba(204,0,0,.04) 70px);
-    z-index:1;pointer-events:none;
-  }
-  /* Video slide */
-  .gallery-slide.video-slide{cursor:default}
-  .gallery-slide.video-slide iframe{
-    width:100%;height:100%;position:absolute;inset:0;border:none;z-index:2;
-  }
-  .gallery-slide.video-slide::before{display:none}
-  .gallery-ph{
-    z-index:1;text-align:center;
-    font-family:var(--font-head);font-size:.8rem;letter-spacing:.2em;
-    color:rgba(204,0,0,.35);display:flex;flex-direction:column;gap:.8rem;align-items:center;
-  }
-  .gallery-ph .ph-icon{font-size:3rem;opacity:.3}
-  /* Video badge overlay */
-  .video-badge{
-    position:absolute;top:14px;left:14px;z-index:10;
-    background:rgba(0,0,0,.75);border:1px solid var(--neon);
-    color:var(--neon-glow);font-family:var(--font-head);font-size:.65rem;
-    letter-spacing:.15em;padding:.3rem .7rem;border-radius:20px;
-    display:flex;align-items:center;gap:.4rem;
-    box-shadow:0 0 10px rgba(204,0,0,.4);
-  }
-  .gallery-grid{
-    display:grid;grid-template-columns:repeat(6,1fr);gap:10px;
-    max-width:920px;margin:0 auto;
-  }
-  @media(max-width:700px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
-  .gallery-thumb{
-    aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;
-    border:1px solid var(--border);
-    background:linear-gradient(135deg,var(--bg3),#0f0000);
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.2rem;color:rgba(204,0,0,.25);
-    transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;
-  }
-  .gallery-thumb img{width:100%;height:100%;object-fit:cover;border-radius:7px}
-  .gallery-thumb:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(204,0,0,.4);border-color:var(--neon)}
-  .gallery-thumb.active{
-    border-color:transparent;
-    box-shadow:0 0 0 2px var(--neon),0 0 20px rgba(255,34,34,.6);
-    animation:thumbPulse 1.5s ease-in-out infinite;
-  }
-  @keyframes thumbPulse{
-    0%,100%{box-shadow:0 0 0 2px #CC0000,0 0 15px rgba(204,0,0,.5)}
-    50%{box-shadow:0 0 0 2px #FF4400,0 0 30px rgba(255,68,0,.8)}
-  }
-  .gallery-thumb.video-thumb{position:relative}
-  .gallery-thumb.video-thumb::after{
-    content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-size:1.4rem;color:rgba(255,255,255,.85);
-    background:rgba(0,0,0,.45);border-radius:7px;
-    text-shadow:0 0 10px var(--neon);
-  }
-  .gallery-embers{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:15px}
-  .ember{
-    position:absolute;width:3px;height:3px;border-radius:50%;
-    background:var(--neon-bright);animation:emberFloat linear infinite;opacity:0;
-  }
-  @keyframes emberFloat{
-    0%{transform:translateY(100%) translateX(0) scale(1);opacity:0}
-    15%{opacity:1}
-    50%{transform:translateY(50%) translateX(20px) scale(.7)}
-    85%{opacity:.3}
-    100%{transform:translateY(-20px) translateX(-10px) scale(.3);opacity:0}
-  }
-
-  /* LIGHTBOX */
-  .lightbox{
-    position:fixed;inset:0;z-index:9999;
-    background:rgba(0,0,0,.96);
-    display:flex;align-items:center;justify-content:center;
-    opacity:0;pointer-events:none;transition:opacity .3s;
-  }
-  .lightbox.open{opacity:1;pointer-events:all}
-  .lightbox-img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 0 60px rgba(204,0,0,.4)}
-  .lightbox-close{
-    position:absolute;top:20px;right:20px;
-    background:rgba(204,0,0,.3);border:1px solid var(--neon);
-    color:#fff;font-size:1.5rem;width:44px;height:44px;
-    border-radius:50%;display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:.3s;
-  }
-  .lightbox-close:hover{background:var(--neon)}
-
-  /* ═══ JOIN ═══ */
-  #join{background:var(--bg)}
-  .join-inner{max-width:700px;margin:0 auto;text-align:center}
-  .join-desc{color:#cc9999;font-size:1rem;line-height:1.7;margin-bottom:2.5rem;font-style:italic}
-
-  .social-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
-
-  .btn-discord{
-    display:inline-flex;align-items:center;gap:.8rem;
-    padding:1.1rem 2.5rem;
-    font-family:var(--font-head);font-size:.9rem;font-weight:700;
-    letter-spacing:.15em;text-decoration:none;color:#fff;
-    background:linear-gradient(135deg,#5865F2,#404EED);
-    border-radius:50px;
-    border:1px solid rgba(255,255,255,.2);
-    box-shadow:0 0 40px rgba(88,101,242,.5),0 8px 30px rgba(0,0,0,.4);
-    transition:all .3s;
-  }
-  .btn-discord:hover{
-    transform:translateY(-4px) scale(1.04);
-    box-shadow:0 0 60px rgba(88,101,242,.8),0 12px 40px rgba(0,0,0,.5);
-  }
-
-  .btn-tiktok{
-    display:inline-flex;align-items:center;gap:.8rem;
-    padding:1.1rem 2.5rem;
-    font-family:var(--font-head);font-size:.9rem;font-weight:700;
-    letter-spacing:.15em;text-decoration:none;color:#fff;
-    background:linear-gradient(135deg,#010101,#1a1a1a);
-    border-radius:50px;
-    border:1px solid rgba(255,255,255,.15);
-    box-shadow:0 0 30px rgba(255,45,85,.35),0 8px 30px rgba(0,0,0,.4);
-    transition:all .3s;position:relative;overflow:hidden;
-  }
-  .btn-tiktok::before{
-    content:'';position:absolute;inset:0;border-radius:50px;
-    background:linear-gradient(135deg,rgba(105,201,208,.08),rgba(255,45,85,.08));
-    opacity:0;transition:opacity .3s;
-  }
-  .btn-tiktok:hover{
-    transform:translateY(-4px) scale(1.04);
-    box-shadow:0 0 50px rgba(255,45,85,.6),0 12px 40px rgba(0,0,0,.5);
-  }
-  .btn-tiktok:hover::before{opacity:1}
-  .tiktok-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px}
-  .tiktok-icon svg{width:100%;height:100%;fill:#fff}
-
-  .discord-icon{font-size:1.4rem}
-
-  /* ═══ MAP SECTION ═══ */
-  .map-section{
-    width:100%;max-width:700px;margin:0 auto;
-    border-radius:20px;overflow:hidden;
-    border:2px solid var(--border);
-    box-shadow:0 0 40px rgba(204,0,0,.3),0 0 80px rgba(204,0,0,.1);
-    position:relative;
-    transition:box-shadow .3s;
-  }
-  .map-section:hover{
-    box-shadow:0 0 60px rgba(255,34,34,.5),0 0 100px rgba(204,0,0,.2);
-  }
-  .map-section img{
-    width:100%;display:block;
-    transition:transform .4s ease;
-  }
-  .map-section:hover img{transform:scale(1.02)}
-  .map-label{
-    position:absolute;bottom:0;left:0;right:0;
-    background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(10,0,0,.7) 60%,transparent 100%);
-    padding:1.5rem 1.5rem 1.2rem;
-    display:flex;align-items:flex-end;justify-content:space-between;
-    flex-wrap:wrap;gap:.5rem;
-  }
-  .map-name{
-    font-family:var(--font-head);font-size:clamp(1rem,3vw,1.5rem);font-weight:900;
-    background:linear-gradient(135deg,var(--white),var(--neon-glow));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    letter-spacing:.15em;
-    filter:drop-shadow(0 0 10px rgba(255,34,34,.6));
-  }
-  .map-tag{
-    font-family:var(--font-head);font-size:.65rem;letter-spacing:.2em;
-    color:var(--accent);border:1px solid rgba(255,136,0,.4);
-    padding:.25rem .7rem;border-radius:20px;background:rgba(255,136,0,.1);
-    white-space:nowrap;
-  }
-  .map-pin-anim{
-    position:absolute;top:16px;right:16px;
-    width:36px;height:36px;border-radius:50%;
-    background:rgba(204,0,0,.3);border:2px solid var(--neon);
-    display:flex;align-items:center;justify-content:center;
-    font-size:1rem;
-    animation:pinPulse 2s ease-in-out infinite;
-  }
-  @keyframes pinPulse{
-    0%,100%{box-shadow:0 0 0 0 rgba(204,0,0,.6)}
-    50%{box-shadow:0 0 0 10px rgba(204,0,0,0)}
-  }
-
-  /* FOOTER */
-  footer{
-    position:relative;z-index:1;
-    background:rgba(0,0,0,.85);border-top:1px solid var(--border);
-    padding:3rem 2rem 2rem;text-align:center;
-  }
-  .footer-logo{
-    font-family:var(--font-head);font-size:1.5rem;font-weight:900;
-    background:linear-gradient(135deg,var(--neon-bright),var(--accent));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    margin-bottom:.5rem;
-  }
-  .footer-tagline{color:var(--muted);font-size:.85rem;margin-bottom:1rem}
-  .footer-socials{display:flex;justify-content:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-  .footer-social-link{
-    display:inline-flex;align-items:center;gap:.4rem;
-    font-family:var(--font-head);font-size:.7rem;letter-spacing:.1em;
-    text-decoration:none;padding:.35rem .9rem;border-radius:20px;
-    transition:all .25s;
-  }
-  .footer-social-link.discord{
-    color:#7289da;border:1px solid rgba(114,137,218,.35);background:rgba(114,137,218,.07);
-  }
-  .footer-social-link.discord:hover{background:rgba(114,137,218,.2);box-shadow:0 0 15px rgba(114,137,218,.4)}
-  .footer-social-link.tiktok{
-    color:#ff2d55;border:1px solid rgba(255,45,85,.35);background:rgba(255,45,85,.07);
-  }
-  .footer-social-link.tiktok:hover{background:rgba(255,45,85,.2);box-shadow:0 0 15px rgba(255,45,85,.4)}
-  .footer-social-link svg{width:12px;height:12px;fill:currentColor}
-  .footer-sep{width:60px;height:2px;margin:.5rem auto 1.5rem;background:linear-gradient(90deg,var(--neon),var(--accent));border-radius:2px}
-  .footer-copy{color:#553333;font-size:.8rem}
-
-  /* PAGE TABS */
-  .page{display:none}
-  .page.active{display:block}
-
-  .scanlines{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    pointer-events:none;z-index:0;
-    background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(204,0,0,.015) 2px,rgba(204,0,0,.015) 4px);
-  }
-
-  /* MUSIC PLAYER */
-  #music-btn{
-    position:fixed;bottom:28px;right:28px;z-index:2000;
-    width:52px;height:52px;border-radius:50%;
-    background:linear-gradient(135deg,var(--neon),#880000);
-    border:2px solid rgba(255,100,100,.4);
-    box-shadow:0 0 20px rgba(204,0,0,.6),0 4px 15px rgba(0,0,0,.5);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:all .3s;
-    animation:musicPulse 2s ease-in-out infinite;
-  }
-  #music-btn:hover{
-    transform:scale(1.12);
-    box-shadow:0 0 35px rgba(255,34,34,.9),0 6px 20px rgba(0,0,0,.6);
-  }
-  #music-btn.paused{
-    animation:none;
-    background:linear-gradient(135deg,#330000,#1a0000);
-    box-shadow:0 0 10px rgba(204,0,0,.3),0 4px 15px rgba(0,0,0,.5);
-  }
-  @keyframes musicPulse{
-    0%,100%{box-shadow:0 0 20px rgba(204,0,0,.6),0 4px 15px rgba(0,0,0,.5)}
-    50%{box-shadow:0 0 35px rgba(255,34,34,.9),0 0 60px rgba(204,0,0,.3),0 4px 15px rgba(0,0,0,.5)}
-  }
-  #music-btn svg{width:22px;height:22px;fill:#fff;transition:.2s}
-  .music-tooltip{
-    position:fixed;bottom:90px;right:28px;z-index:2000;
-    background:rgba(10,0,0,.92);border:1px solid var(--border);
-    color:var(--white);font-family:var(--font-head);font-size:.65rem;
-    letter-spacing:.12em;padding:.4rem .9rem;border-radius:20px;
-    white-space:nowrap;pointer-events:none;
-    opacity:0;transform:translateY(6px);
-    transition:opacity .3s,transform .3s;
-    box-shadow:0 0 15px rgba(204,0,0,.3);
-  }
-  #music-btn:hover ~ .music-tooltip{opacity:1;transform:translateY(0)}
-  /* vinyl spin rings */
-  .music-ring{
-    position:absolute;border-radius:50%;border:1px solid rgba(204,0,0,.4);
-    animation:ringExpand 2s ease-out infinite;pointer-events:none;
-  }
-  .music-ring:nth-child(2){animation-delay:.6s}
-  .music-ring:nth-child(3){animation-delay:1.2s}
-  @keyframes ringExpand{
-    0%{width:52px;height:52px;opacity:.8;top:0;left:0}
-    100%{width:90px;height:90px;opacity:0;top:-19px;left:-19px}
-  }
-</style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--black); color: var(--white);
+      line-height: 1.6; overflow-x: hidden;
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    body.loaded { opacity: 1; }
+    #loading {
+      position:fixed; inset:0; background:var(--black);
+      display:flex; align-items:center; justify-content:center;
+      z-index:10000; transition:0.5s;
+    }
+    #loading.hidden { opacity:0; visibility:hidden; }
+    .loader-logo { width:90px; animation: floatLogo 2s infinite alternate; }
+    @keyframes floatLogo {
+      0%{ transform:translateY(0); filter:drop-shadow(0 0 8px red); }
+      100%{ transform:translateY(-12px); filter:drop-shadow(0 0 22px white); }
+    }
+    #progress-bar {
+      position:fixed; top:0; left:0; height:3px;
+      background:linear-gradient(90deg, red, white, red);
+      z-index:9999; width:0%; box-shadow:0 0 15px red;
+    }
+    .navbar {
+      position:fixed; top:0; width:100%; z-index:1000;
+      padding:1rem 2rem; display:flex; align-items:center;
+      justify-content:space-between; transition:0.4s;
+      background:transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(9,9,9,0.8); backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,0,0,0.5);
+      box-shadow:0 4px 25px rgba(255,0,0,0.25);
+    }
+    .logo-nav { height:44px; }
+    .nav-links {
+      display:flex; gap:1.8rem; list-style:none; align-items:center;
+    }
+    .nav-links a {
+      color:white; text-decoration:none; font-weight:500;
+      position:relative; transition:0.3s;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-5px; left:0;
+      width:0; height:2px; background:red;
+      box-shadow:0 0 10px red; transition:0.3s;
+    }
+    .nav-links a:hover { color:#ff6666; text-shadow:0 0 8px red; }
+    .nav-links a:hover::after { width:100%; }
+    .btn-red {
+      background:red; color:white; padding:0.6rem 1.6rem;
+      border-radius:40px; font-weight:bold; text-decoration:none;
+      box-shadow:0 0 20px rgba(255,0,0,0.7); transition:0.3s;
+      border:none; cursor:pointer; white-space:nowrap;
+    }
+    .btn-red:hover { background:#cc0000; box-shadow:0 0 35px red; transform:translateY(-2px); }
+    .menu-toggle { display:none; background:none; border:none; color:white; font-size:2rem; cursor:pointer; }
+    section {
+      min-height:100vh; padding:6rem 2rem 4rem;
+      display:flex; flex-direction:column; justify-content:center;
+      position:relative; z-index:2; scroll-margin-top:80px;
+    }
+    .hero-section {
+      height:100vh; display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    .slideshow {
+      position:absolute; inset:0; background-size:cover;
+      background-position:center; transition:opacity 1.2s; opacity:0;
+    }
+    .slideshow.active { opacity:1; }
+    .hero-overlay {
+      position:absolute; inset:0; background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(5px); z-index:1;
+    }
+    .hero-content { position:relative; z-index:2; text-align:center; }
+    .hero-logo { width:150px; filter:drop-shadow(0 0 30px red); margin-bottom:1rem; }
+    .glass-card {
+      background:rgba(26,26,26,0.6); backdrop-filter:blur(16px);
+      border:1px solid rgba(255,0,0,0.3); border-radius:24px;
+      padding:2rem; box-shadow:0 20px 40px rgba(0,0,0,0.7);
+      transition:0.4s;
+    }
+    .glass-card:hover { border-color:rgba(255,0,0,0.7); box-shadow:0 0 35px rgba(255,0,0,0.5); }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; }
+    .masonry { columns:3 240px; gap:1.5rem; }
+    .masonry img { width:100%; margin-bottom:1.5rem; border-radius:20px; transition:0.3s; cursor:pointer; }
+    .masonry img:hover { transform:scale(1.03); box-shadow:0 0 28px red; }
+    .badge { background:red; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem; display:inline-block; margin-bottom:0.5rem; }
+    footer { background:#050505; text-align:center; padding:3rem; border-top:1px solid red; }
+    .floating-wa {
+      position:fixed; bottom:25px; right:25px; background:#25D366;
+      width:60px; height:60px; border-radius:50%; display:flex;
+      align-items:center; justify-content:center; color:white;
+      font-size:2rem; box-shadow:0 0 25px green; z-index:999; text-decoration:none;
+    }
+    .toast {
+      position:fixed; bottom:30px; left:50%; transform:translateX(-50%);
+      background:red; color:white; padding:0.8rem 2rem;
+      border-radius:30px; z-index:9999; display:none;
+    }
+    @media (max-width:768px) {
+      .grid-2 { grid-template-columns:1fr; }
+      .nav-links { display:none; flex-direction:column; position:absolute; top:70px; left:0; width:100%; background:black; padding:1.5rem; }
+      .nav-links.active { display:flex; }
+      .menu-toggle { display:block; }
+    }
+  </style>
 </head>
 <body>
+  <div id="loading"><img src="https://i.ibb.co.com/DHK9KGyV/1000050714-removebg-preview.png" class="loader-logo" alt="logo"></div>
+  <div id="progress-bar"></div>
+  <div id="particles" style="position:fixed; inset:0; pointer-events:none; z-index:0;"></div>
 
-<div id="particles"></div>
-<div class="scanlines"></div>
+  <nav class="navbar" id="navbar">
+    <img src="https://i.ibb.co.com/DHK9KGyV/1000050714-removebg-preview.png" alt="DOJO" class="logo-nav">
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#visi">Visi & Misi</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#galeri-latihan">Galeri Latihan</a></li>
+      <li><a href="#galeri-kejuaraan">Galeri Kejuaraan</a></li>
+      <li><a href="#prestasi">Prestasi</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><a href="#daftar" class="btn-red">Daftar Sekarang</a></li>
+    </ul>
+  </nav>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <div class="nav-logo" onclick="showPage('home')">KMF</div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#" onclick="showPage('home');return false">HOME</a></li>
-    <li><a href="#" onclick="showPage('about');return false">ABOUT</a></li>
-    <li><a href="#" onclick="showPage('members');return false">MEMBERS</a></li>
-    <li><a href="#" onclick="showPage('gallery');return false">GALLERY</a></li>
-    <li><a href="#" onclick="showPage('join');return false">JOIN US</a></li>
-    <li>
-      <a href="https://www.tiktok.com/@kamex_family?_r=1&_t=ZS-95wW8hZTcZD" target="_blank" class="nav-tiktok" title="TikTok KMF">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
-        </svg>
-        TIKTOK
-      </a>
-    </li>
-  </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- ═══════════ HOME ═══════════ -->
-<div class="page active" id="page-home">
-<section id="home">
-  <img src="https://i.ibb.co.com/k2yr0sQr/1000013322.png"
-       alt="KAMEX FAMILY Logo" class="hero-logo fade-in"
-       onerror="this.style.background='linear-gradient(135deg,#1a0000,#3a0000)';this.alt='KMF'"/>
-  <div class="hero-tag fade-in">ROBLOX GAMING COMMUNITY</div>
-  <h1 class="hero-title fade-in">WELCOME TO<br>KAMEX FAMILY</h1>
-  <p class="hero-sub fade-in">Komunitas Roblox dengan solidaritas tinggi dan kekeluargaan yang kuat</p>
-  <a href="https://discord.gg/CvKMvcZJyd" target="_blank" class="btn-cta fade-in">⚡ JOIN SEKARANG</a>
-
-  <div class="home-slider-wrap fade-in">
-    <button class="slider-arrow prev" onclick="homeSlide(-1)">‹</button>
-    <div class="home-slider" id="homeSlider">
-      <div class="home-slide"><img src="https://i.ibb.co.com/V0Ypbyqw/1000021893.jpg" alt="KMF 1" onerror="this.remove()"/><div class="slide-icon" style="position:relative;z-index:2">🎮</div></div>
-      <div class="home-slide"><img src="https://i.ibb.co.com/G4f1j5Bw/IMG-20260518-221845.jpg" alt="KMF 2" onerror="this.remove()"/><div class="slide-icon" style="position:relative;z-index:2">🎮</div></div>
-      <div class="home-slide"><img src="https://i.ibb.co.com/4w6YR2nB/IMG-20260518-221759.jpg" alt="KMF 3" onerror="this.remove()"/><div class="slide-icon" style="position:relative;z-index:2">🎮</div></div>
-      <div class="home-slide"><img src="https://i.ibb.co.com/45yJ4qm/IMG-20260518-221733.jpg" alt="KMF 4" onerror="this.remove()"/><div class="slide-icon" style="position:relative;z-index:2">🎮</div></div>
-      <div class="home-slide"><img src="https://i.ibb.co.com/Zz7T9CJ1/IMG-20260518-221710.jpg" alt="KMF 5" onerror="this.remove()"/><div class="slide-icon" style="position:relative;z-index:2">🎮</div></div>
-      <div class="home-slide"><div class="slide-icon">🎮</div><span class="slide-text">IMAGE SLOT 6</span></div>
-      <div class="home-slide"><div class="slide-icon">🎮</div><span class="slide-text">IMAGE SLOT 7</span></div>
-      <div class="home-slide"><div class="slide-icon">🎮</div><span class="slide-text">IMAGE SLOT 8</span></div>
-      <div class="home-slide"><div class="slide-icon">🎮</div><span class="slide-text">IMAGE SLOT 9</span></div>
-      <div class="home-slide"><div class="slide-icon">🎮</div><span class="slide-text">IMAGE SLOT 10</span></div>
-    </div>
-    <button class="slider-arrow next" onclick="homeSlide(1)">›</button>
-    <div class="slider-dots" id="homeDots"></div>
-  </div>
-</section>
-</div>
-
-<!-- ═══════════ ABOUT ═══════════ -->
-<div class="page" id="page-about">
-<section id="about" class="section-pad">
-  <div class="container">
-    <h2 class="section-title fade-in">Tentang KAMEX FAMILY</h2>
-    <div class="glow-line fade-in"></div>
-    <p class="section-sub fade-in">Kenali lebih dalam komunitas kami</p>
-    <div class="about-grid">
-      <div class="about-img-wrap fade-in">
-        <img
-          src="https://i.ibb.co.com/H06ytb0/6a4e58f7-93f9-4899-a6a6-9fc10b7e03a3.png"
-          alt="KAMEX FAMILY Community"
-          onerror="this.parentElement.innerHTML='<div class=\'about-placeholder\'><span class=\'ph-icon\'>🏆</span><span>COMMUNITY IMAGE</span></div>'"
-        />
+  <!-- HOME -->
+  <section id="home" class="hero-section">
+    <div class="slideshow active" style="background-image:url('https://i.ibb.co.com/ccp1r0R0/IMG-20260715-WA0020.jpg');"></div>
+    <div class="slideshow" style="background-image:url('https://i.ibb.co.com/NnGTB0ys/IMG-20260715-WA0019.jpg');"></div>
+    <div class="slideshow" style="background-image:url('https://i.ibb.co.com/rRN49rxg/IMG-20260715-WA0018.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="https://i.ibb.co.com/DHK9KGyV/1000050714-removebg-preview.png" class="hero-logo">
+      <h1 style="font-size:3.8rem; background:linear-gradient(to right,red,white,red); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">DOJO AKA TO SHIRO</h1>
+      <p style="font-size:1.5rem; letter-spacing:6px;">Discipline • Respect • Spirit</p>
+      <p style="max-width:600px; margin:1rem auto;">Membangun karakter, disiplin, mental juara, serta semangat Bushido melalui latihan karate yang profesional dan berkualitas.</p>
+      <div style="margin-top:2rem;">
+        <a href="#daftar" class="btn-red">Daftar Sekarang</a>
+        <a href="#tentang" class="btn-outline" style="border:1px solid white; padding:0.7rem 2rem; border-radius:40px; color:white; margin-left:10px;">Tentang Kami</a>
       </div>
-      <div class="about-content fade-in">
-        <span class="about-badge">📅 BERDIRI 01 MEI 2026</span>
-        <h2>KAMEX FAMILY<br><span style="font-size:.8em;opacity:.7">(KMF)</span></h2>
-        <p class="about-desc">
-          KAMEX FAMILY adalah komunitas gaming Roblox yang dibangun di atas fondasi kepercayaan, 
-          kekeluargaan, dan semangat bermain bersama. Kami percaya bahwa gaming bukan sekadar 
-          tentang menang atau kalah, melainkan tentang membangun hubungan yang bermakna.
-        </p>
-        <div class="about-highlight">
-          "KAMEX FAMILY melambangkan solidaritas tinggi, kebersamaan, dan loyalitas antar anggota komunitas."
-        </div>
-        <div class="vm-grid">
-          <div class="vm-card">
-            <div class="vm-icon">🔥</div>
-            <h4>KOMUNITAS AKTIF</h4>
-            <p>Event & aktivitas rutin setiap minggu</p>
-          </div>
-          <div class="vm-card">
-            <div class="vm-icon">🤝</div>
-            <h4>SUPPORT SESAMA</h4>
-            <p>Saling bantu antar player kapan saja</p>
-          </div>
-          <div class="vm-card">
-            <div class="vm-icon">🎮</div>
-            <h4>FUN & SOLID</h4>
-            <p>Lingkungan positif, fun, dan kompetitif</p>
-          </div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section id="tentang">
+    <div class="grid-2">
+      <img src="https://i.ibb.co.com/Kcz1Mmqs/IMG-20260715-WA0021.jpg" alt="Senpai" style="border-radius:30px; box-shadow:0 0 40px red;">
+      <div>
+        <h2 style="color:red; font-size:2.2rem;">Tentang Kami</h2>
+        <p style="font-size:1.1rem;">DOJO AKA TO SHIRO merupakan dojo karate yang berkomitmen membentuk karateka yang disiplin, tangguh, berprestasi, serta memiliki karakter luhur sesuai filosofi Bushido.</p>
+        <div class="glass-card" style="margin-top:2rem;">
+          <h3>ANDI TAUFIK</h3>
+          <p style="color:red;">Senpai</p>
+          <p><em>"Karate bukan hanya tentang bertarung, tetapi tentang membangun karakter."</em></p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-</div>
+  </section>
 
-<!-- ═══════════ MEMBERS ═══════════ -->
-<div class="page" id="page-members">
-<section id="members" class="section-pad">
-  <div class="container">
-    <h2 class="section-title fade-in">Struktur Tim</h2>
-    <div class="glow-line fade-in"></div>
-    <p class="section-sub fade-in">Keluarga yang membangun KAMEX FAMILY</p>
-    <div class="members-grid">
-      <div class="member-card fade-in">
-        <span class="member-badge">👑</span>
-        <div class="member-photo" style="background-image:url('https://i.ibb.co/QqBWy6m/IMG-20260429-WA0004.jpg');background-size:cover;background-position:center;font-size:0;"></div>
-        <span class="member-role">OWNER</span>
-        <div class="member-name">KMFxRenss</div>
-        <span class="member-status">Founder & Leader</span>
-      </div>
-      <div class="member-card fade-in">
-        <span class="member-badge">🛡️</span>
-        <div class="member-photo" style="background-image:url('https://i.ibb.co/qQn9NGg/1000013575.png');background-size:cover;background-position:center;font-size:0;"></div>
-        <span class="member-role">CO-OWNER</span>
-        <div class="member-name">KMFxSagara</div>
-        <span class="member-status">Co-Founder</span>
-        <div style="margin-top:.5rem"><span class="dev-badge">⚙️ DEVELOPER</span></div>
-      </div>
-      <div class="member-card fade-in">
-        <span class="member-badge">🛡️</span>
-        <div class="member-photo" style="background-image:url('https://i.ibb.co/YBjHrHZv/IMG-20260425-WA0000.jpg');background-size:cover;background-position:center;font-size:0;"></div>
-        <span class="member-role">CO-OWNER</span>
-        <div class="member-name">KMFxShiraaa</div>
-        <span class="member-status">Co-Founder</span>
-      </div>
-      <div class="member-card fade-in">
-        <span class="member-badge">⚔️</span>
-        <div class="member-photo" style="background-image:url('https://i.ibb.co.com/Xf4NBqKJ/IMG-20260519-055849.jpg');background-size:cover;background-position:center;font-size:0;"></div>
-        <span class="member-role">LEADER 1</span>
-        <div class="member-name">KMFxMEGI_HIFF</div>
-        <span class="member-status">Ketua Divisi</span>
-      </div>
-      <div class="member-card fade-in">
-        <span class="member-badge">⚔️</span>
-        <div class="member-photo" style="background-image:url('https://i.ibb.co.com/k2Q4RgWv/D45-CDCA1-33-AD-44-DC-8839-D5-B03115-AC39.jpg');background-size:cover;background-position:center;font-size:0;"></div>
-        <span class="member-role">LEADER 2</span>
-        <div class="member-name">KMFxYaya</div>
-        <span class="member-status">Ketua Divisi</span>
-      </div>
-      <div class="member-card soon-card fade-in"><span class="member-badge">🧠</span><div class="member-photo">❓</div><span class="member-role">HEAD ADMIN 1</span><div class="member-name"><span class="soon-label">COMING SOON</span></div><span class="member-status">Nyusul...</span></div>
-      <div class="member-card soon-card fade-in"><span class="member-badge">🧠</span><div class="member-photo">❓</div><span class="member-role">HEAD ADMIN 2</span><div class="member-name"><span class="soon-label">COMING SOON</span></div><span class="member-status">Nyusul...</span></div>
-      <div class="member-card soon-card fade-in"><span class="member-badge">🔧</span><div class="member-photo">❓</div><span class="member-role">ADMIN 1</span><div class="member-name"><span class="soon-label">COMING SOON</span></div><span class="member-status">Nyusul...</span></div>
-      <div class="member-card soon-card fade-in"><span class="member-badge">🔧</span><div class="member-photo">❓</div><span class="member-role">ADMIN 2</span><div class="member-name"><span class="soon-label">COMING SOON</span></div><span class="member-status">Nyusul...</span></div>
-      <div class="member-card soon-card fade-in"><span class="member-badge">🔧</span><div class="member-photo">❓</div><span class="member-role">ADMIN 3</span><div class="member-name"><span class="soon-label">COMING SOON</span></div><span class="member-status">Nyusul...</span></div>
-      <div class="member-card soon-card fade-in"><span class="member-badge">🔧</span><div class="member-photo">❓</div><span class="member-role">ADMIN 4</span><div class="member-name"><span class="soon-label">COMING SOON</span></div><span class="member-status">Nyusul...</span></div>
+  <!-- VISI MISI -->
+  <section id="visi">
+    <div class="grid-2">
+      <div class="glass-card"><h2>VISI</h2><p>Mengharumkan negeri melalui karate. AKA TO SHIRO sejati yang memiliki integritas tinggi, tangguh, rendah hati, berprestasi, menuju Karate Berkelas Dunia. <strong>AKA TO SHIRO Goes To World Class.</strong></p></div>
+      <div class="glass-card"><h2 style="color:red;">MISI</h2><ol><li>Menanamkan disiplin, hormat, tanggung jawab.</li><li>Pengembangan teknis dan mental.</li><li>Sportivitas dan persaudaraan.</li><li>Filosofi Aka (keberanian) dan Shiro (kesucian).</li><li>Atlet berprestasi lokal-internasional.</li><li>Pembinaan semua usia.</li></ol></div>
     </div>
-  </div>
-</section>
-</div>
+  </section>
 
-<!-- ═══════════ GALLERY ═══════════ -->
-<div class="page" id="page-gallery">
-<section id="gallery" class="section-pad">
-  <div class="container">
-    <h2 class="section-title fade-in">Gallery</h2>
-    <div class="glow-line fade-in"></div>
-    <p class="section-sub fade-in">Momen & kenangan bersama KAMEX FAMILY</p>
-    <div class="gallery-border-anim fade-in">
-      <div class="gallery-slider-wrap">
-        <div class="gallery-embers" id="galleryEmbers"></div>
-        <button class="slider-arrow prev" onclick="galSlide(-1)" style="z-index:20">‹</button>
-        <div class="gallery-slider" id="galSlider">
-          <!-- Slide 0: Photo 1 -->
-          <div class="gallery-slide" onclick="openLightbox(0)">
-            <img src="https://i.ibb.co.com/V0Ypbyqw/1000021893.jpg" alt="KMF Gallery 1"/>
-          </div>
-          <!-- Slide 1: Photo 2 -->
-          <div class="gallery-slide" onclick="openLightbox(1)">
-            <img src="https://i.ibb.co.com/G4f1j5Bw/IMG-20260518-221845.jpg" alt="KMF Gallery 2"/>
-          </div>
-          <!-- Slide 2: Photo 3 -->
-          <div class="gallery-slide" onclick="openLightbox(2)">
-            <img src="https://i.ibb.co.com/4w6YR2nB/IMG-20260518-221759.jpg" alt="KMF Gallery 3"/>
-          </div>
-          <!-- Slide 3: Photo 4 -->
-          <div class="gallery-slide" onclick="openLightbox(3)">
-            <img src="https://i.ibb.co.com/45yJ4qm/IMG-20260518-221733.jpg" alt="KMF Gallery 4"/>
-          </div>
-          <!-- Slide 4: Photo 5 -->
-          <div class="gallery-slide" onclick="openLightbox(4)">
-            <img src="https://i.ibb.co.com/Zz7T9CJ1/IMG-20260518-221710.jpg" alt="KMF Gallery 5"/>
-          </div>
-          <!-- Slide 5: VIDEO -->
-          <div class="gallery-slide video-slide">
-            <div class="video-badge">▶ VIDEO</div>
-            <iframe
-              src="https://screenapp.io/app/v/YItDnBQugA"
-              allowfullscreen
-              allow="autoplay; fullscreen"
-              title="KMF Video"
-            ></iframe>
-          </div>
-        </div>
-        <button class="slider-arrow next" onclick="galSlide(1)" style="z-index:20">›</button>
-      </div>
+  <!-- PROGRAM -->
+  <section id="program">
+    <h2 style="text-align:center;">Program Latihan</h2>
+    <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin-top:2rem;">
+      <div class="glass-card">🥋 Karate Dasar</div>
+      <div class="glass-card">🥋 Kata</div>
+      <div class="glass-card">🥋 Kumite</div>
+      <div class="glass-card">🥋 Persiapan Kejuaraan</div>
+      <div class="glass-card">🥋 Ujian Kenaikan Sabuk</div>
     </div>
-    <div class="gallery-grid fade-in" id="galleryGrid"></div>
-  </div>
-</section>
-</div>
+  </section>
 
-<!-- ═══════════ JOIN ═══════════ -->
-<div class="page" id="page-join">
-<section id="join" class="section-pad">
-  <div class="container">
-    <div class="join-inner">
-      <h2 class="section-title fade-in">Gabung Bersama<br>KAMEX FAMILY</h2>
-      <div class="glow-line fade-in"></div>
-      <p class="section-sub fade-in">Jadi bagian dari keluarga kami</p>
-      <p class="join-desc fade-in">
-        Klik tombol untuk langsung bergabung ke server Discord kami.<br>
-        Follow juga TikTok kami untuk konten terbaru! 🚀
-      </p>
-
-      <div class="social-btns fade-in">
-        <a href="https://discord.gg/CvKMvcZJyd" target="_blank" class="btn-discord">
-          <span class="discord-icon">💬</span> JOIN DISCORD
-        </a>
-        <a href="https://www.tiktok.com/@kamex_family?_r=1&_t=ZS-95wW8hZTcZD" target="_blank" class="btn-tiktok">
-          <span class="tiktok-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
-            </svg>
-          </span>
-          FOLLOW TIKTOK
-        </a>
-      </div>
-
-      <!-- MAP — KAMEX CLUB -->
-      <a href="https://www.roblox.com/share?code=4d479468f7773b4d8d926699c96b52ff&type=ExperienceDetails&stamp=1779076755053"
-         target="_blank" class="map-section fade-in" style="display:block;text-decoration:none;">
-        <div class="map-pin-anim">📍</div>
-        <img
-          src="https://i.ibb.co.com/pryCS9J4/1000015718.png"
-          alt="KAMEX CLUB Map"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-        />
-        <div style="display:none;width:100%;height:250px;background:linear-gradient(135deg,var(--bg3),#0f0000);align-items:center;justify-content:center;flex-direction:column;gap:.8rem;color:rgba(204,0,0,.35);font-family:var(--font-head);font-size:.8rem;letter-spacing:.2em;">
-          <span style="font-size:2.5rem;opacity:.3">🗺️</span>
-          <span>MAP — KAMEX CLUB</span>
-        </div>
-        <div class="map-label">
-          <div class="map-name">🗺️ KAMEX CLUB</div>
-          <span class="map-tag" style="color:#00d4aa;border-color:rgba(0,212,170,.4);background:rgba(0,212,170,.1);">🎮 PLAY ON ROBLOX</span>
-        </div>
-      </a>
-
+  <!-- DAFTAR -->
+  <section id="daftar" style="min-height:auto; text-align:center;">
+    <div class="glass-card" style="max-width:500px; margin:auto;">
+      <h2>Biaya Pendaftaran</h2>
+      <p style="font-size:2.5rem; color:red;">Rp50.000,-</p>
+      <p>BRI: 0040-01-01-1026-53-4 a.n ANDI TAUFIK</p>
+      <button id="copyRek" class="btn-red" style="margin:1rem;">Salin Nomor Rekening</button>
+      <a href="https://wa.me/6281373372227" target="_blank" class="btn-red">Daftar via WhatsApp</a>
     </div>
-  </div>
-</section>
-</div>
+  </section>
 
-<!-- AUDIO -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://international-chocolate-x5n9yho8lw.edgeone.app/kamex%20family.mp3" type="audio/mpeg"/>
-</audio>
+  <!-- GALERI KEJUARAAN (foto kejuaraan) -->
+  <section id="galeri-latihan">
+    <h2>Galeri Kejuaraan</h2>
+    <div class="masonry">
+      <div><span class="badge">🏆 Prestasi</span><img src="https://i.ibb.co.com/ccp1r0R0/IMG-20260715-WA0020.jpg" alt="latihan">
+      <div><span class="badge">🏆 Prestasi</span><img src="https://i.ibb.co.com/rRN49rxg/IMG-20260715-WA0018.jpg" alt="latihan">
+      <div><span class="badge">🏆 Prestasi</span><img src="https://i.ibb.co.com/f3tsSHL/IMG-20260715-WA0009.jpg" alt="latihan">
+      <div><span class="badge">🏆 Prestasi</span><img src="https://i.ibb.co.com/Q39kbjRB/IMG-20260715-WA0011.jpg" alt="latihan">
+      <div><span class="badge">🏆 Prestasi</span><img src="https://i.ibb.co.com/j9kp2pDj/IMG-20260715-WA0013.jpg" alt="latihan">
+    </div>
+  </section>
 
-<!-- MUSIC BUTTON -->
-<div style="position:fixed;bottom:28px;right:28px;z-index:2000">
-  <div class="music-ring"></div>
-  <div class="music-ring"></div>
-  <div class="music-ring"></div>
-  <div id="music-btn" onclick="toggleMusic()" title="Music">
-    <svg id="music-icon-play" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-    <svg id="music-icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </div>
-  <div class="music-tooltip">🎵 KMF SOUNDTRACK</div>
-</div>
+  <!-- GALERI LATIHAN (foto latihan) -->
+  <section id="galeri-kejuaraan">
+    <h2>Galeri Latihan</h2>
+    <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+      <img src="https://i.ibb.co.com/NnGTB0ys/IMG-20260715-WA0019.jpg" style="width:100%; border-radius:20px;"></div>
+      <img src="https://i.ibb.co.com/ymwyQShX/IMG-20260715-WA0017.jpg" style="width:100%; border-radius:20px;"></div>
+      <img src="https://i.ibb.co.com/BVzmNtjH/IMG-20260715-WA0016.jpg" style="width:100%; border-radius:20px;"></div>
+      <img src="https://i.ibb.co.com/zh7wCVq1/IMG-20260715-WA0015.jpg" style="width:100%; border-radius:20px;"></div>
+      <img src="https://i.ibb.co.com/mVWG1h2C/IMG-20260715-WA0014.jpg" style="width:100%; border-radius:20px;"></div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">KAMEX FAMILY</div>
-  <div class="footer-tagline">Solidaritas Tinggi • Kekeluargaan Kuat • Roblox Community</div>
-  <div class="footer-socials">
-    <a href="https://discord.gg/CvKMvcZJyd" target="_blank" class="footer-social-link discord">
-      💬 DISCORD
-    </a>
-    <a href="https://www.tiktok.com/@kamex_family?_r=1&_t=ZS-95wW8hZTcZD" target="_blank" class="footer-social-link tiktok">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
-      </svg>
-      TIKTOK
-    </a>
-  </div>
-  <div class="footer-sep"></div>
-  <p class="footer-copy">© 2026 KAMEX FAMILY (KMF). All Rights Reserved.</p>
-</footer>
+  <!-- PRESTASI -->
+  <section id="prestasi">
+    <h2>Prestasi</h2>
+    <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
+      <div class="glass-card">🏆 Piala Erick Thohir</div>
+      <div class="glass-card">🏆 DAN DENPOM III Lampung</div>
+      <div class="glass-card">🏆 Spiritile Lampung</div>
+      <div class="glass-card">🏆 FORKI Kota Bandar Lampung</div>
+      <div class="glass-card">🏆 SHO-KAIDO se-Provinsi</div>
+      <div class="glass-card">🏆 Dharma Piala Champion</div>
+      <div class="glass-card">🏆 FORKI Provinsi Lampung</div>
+      <div class="glass-card">🏆 UNJ Tingkat Nasional</div>
+      <div class="glass-card">🏆 Piala Gubernur Lampung</div>
+    </div>
+  </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery"/>
-</div>
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <details class="glass-card" style="margin:1rem 0;"><summary>Apakah menerima pemula?</summary><p>Tentu, semua level diterima.</p></details>
+    <details class="glass-card" style="margin:1rem 0;"><summary>Batasan usia?</summary><p>Anak-anak hingga dewasa.</p></details>
+    <details class="glass-card" style="margin:1rem 0;"><summary>Biaya pendaftaran?</summary><p>Rp50.000,-</p></details>
+    <details class="glass-card" style="margin:1rem 0;"><summary>Cara mendaftar?</summary><p>Via WhatsApp atau datang langsung.</p></details>
+    <details class="glass-card" style="margin:1rem 0;"><summary>Ikut kejuaraan?</summary><p>Ya, kami siapkan atlet.</p></details>
+  </section>
 
-<script>
-/* MUSIC */
-const audio=document.getElementById('bgMusic');
-const btn=document.getElementById('music-btn');
-const iconPlay=document.getElementById('music-icon-play');
-const iconPause=document.getElementById('music-icon-pause');
-let musicStarted=false;
+  <!-- KONTAK -->
+  <section id="kontak" style="min-height:auto;">
+    <div class="glass-card" style="max-width:600px; margin:auto; text-align:center;">
+      <p>📱 +62 813-7337-2227 <a href="https://wa.me/6281373372227" class="btn-red">Hubungi WhatsApp</a></p>
+      <p>🎥 <a href="https://youtube.com/@anditaufik1058" target="_blank">YouTube Channel</a></p>
+      <p>📍 <a href="https://maps.app.goo.gl/5iCdr3aCGfGNTwWE7" target="_blank">Lihat Lokasi Dojo</a></p>
+    </div>
+  </section>
 
-function toggleMusic(){
-  if(audio.paused){
-    audio.play().then(()=>{
-      btn.classList.remove('paused');
-      iconPlay.style.display='none';
-      iconPause.style.display='block';
-    }).catch(()=>{});
-  } else {
-    audio.pause();
-    btn.classList.add('paused');
-    iconPlay.style.display='block';
-    iconPause.style.display='none';
-  }
-}
+  <footer>
+    <img src="https://i.ibb.co.com/DHK9KGyV/1000050714-removebg-preview.png" width="80">
+    <h3>DOJO AKA TO SHIRO</h3>
+    <p>Discipline • Respect • Spirit</p>
+    <p>© 2026 DOJO AKA TO SHIRO. All Rights Reserved. ❤️</p>
+  </footer>
 
-// Autoplay on first user interaction
-function tryAutoplay(){
-  if(musicStarted)return;
-  musicStarted=true;
-  audio.volume=0.5;
-  audio.play().then(()=>{
-    btn.classList.remove('paused');
-    iconPlay.style.display='none';
-    iconPause.style.display='block';
-  }).catch(()=>{
-    btn.classList.add('paused');
-  });
-  document.removeEventListener('click',tryAutoplay);
-  document.removeEventListener('touchstart',tryAutoplay);
-}
-document.addEventListener('click',tryAutoplay);
-document.addEventListener('touchstart',tryAutoplay);
+  <a href="https://wa.me/6281373372227" class="floating-wa" target="_blank">💬</a>
+  <div id="toast" class="toast">✔ Nomor rekening berhasil disalin.</div>
 
-// Start paused state visually
-btn.classList.add('paused');
-
-
-const GALLERY_IMAGES = [
-  'https://i.ibb.co.com/V0Ypbyqw/1000021893.jpg',
-  'https://i.ibb.co.com/G4f1j5Bw/IMG-20260518-221845.jpg',
-  'https://i.ibb.co.com/4w6YR2nB/IMG-20260518-221759.jpg',
-  'https://i.ibb.co.com/45yJ4qm/IMG-20260518-221733.jpg',
-  'https://i.ibb.co.com/Zz7T9CJ1/IMG-20260518-221710.jpg',
-  null // video slot (index 5)
-];
-const GAL_TOTAL = GALLERY_IMAGES.length; // 6
-
-/* PARTICLES */
-(function(){
-  const wrap=document.getElementById('particles');
-  const colors=['#CC0000','#FF2222','#FF6600','#FF4400'];
-  for(let i=0;i<50;i++){
-    const p=document.createElement('div');
-    p.className='particle';
-    p.style.left=Math.random()*100+'%';
-    p.style.animationDuration=(8+Math.random()*12)+'s';
-    p.style.animationDelay=(Math.random()*10)+'s';
-    const s=(1+Math.random()*2)+'px';
-    p.style.width=p.style.height=s;
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    wrap.appendChild(p);
-  }
-})();
-
-/* GALLERY EMBERS */
-(function(){
-  const wrap=document.getElementById('galleryEmbers');
-  if(!wrap)return;
-  for(let i=0;i<18;i++){
-    const e=document.createElement('div');
-    e.className='ember';
-    e.style.left=Math.random()*100+'%';
-    e.style.bottom='0';
-    e.style.animationDuration=(2+Math.random()*4)+'s';
-    e.style.animationDelay=(Math.random()*4)+'s';
-    const c=['#FF2222','#FF6600','#FF4400','#FFAA00'][Math.floor(Math.random()*4)];
-    e.style.background=c;
-    e.style.boxShadow='0 0 4px '+c;
-    const s=(2+Math.random()*3)+'px';
-    e.style.width=e.style.height=s;
-    wrap.appendChild(e);
-  }
-})();
-
-/* NAVBAR */
-window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
-});
-function toggleNav(){
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('navLinks').classList.toggle('open');
-}
-
-/* PAGE ROUTER */
-const pages=['home','about','members','gallery','join'];
-function showPage(id){
-  pages.forEach(p=>{
-    const el=document.getElementById('page-'+p);
-    if(el)el.classList.toggle('active',p===id);
-  });
-  document.getElementById('navLinks').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-  window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(()=>initFadeIn(),100);
-  if(id==='gallery')buildGalleryThumbs();
-}
-
-/* FADE IN */
-function initFadeIn(){
-  document.querySelectorAll('.active .fade-in, .active section .fade-in').forEach((el,i)=>{
-    setTimeout(()=>{
-      const ob=new IntersectionObserver(entries=>{
-        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target)}});
-      },{threshold:.1});
-      ob.observe(el);
-    },i*60);
-  });
-}
-window.addEventListener('load',()=>{
-  initFadeIn();
-  buildHomeDots();
-  buildGalleryThumbs();
-  startHomeAuto();
-  startGalAuto();
-});
-
-/* HOME SLIDER */
-let homeIdx=0,homeTotal=10,homeTimer;
-function buildHomeDots(){
-  const wrap=document.getElementById('homeDots');
-  if(!wrap)return;
-  wrap.innerHTML='';
-  for(let i=0;i<homeTotal;i++){
-    const d=document.createElement('div');
-    d.className='sdot'+(i===0?' active':'');
-    d.onclick=(()=>{const ii=i;return()=>goHome(ii)})();
-    wrap.appendChild(d);
-  }
-}
-function goHome(i){
-  homeIdx=i;
-  document.getElementById('homeSlider').style.transform=`translateX(-${i*100}%)`;
-  document.querySelectorAll('#homeDots .sdot').forEach((d,j)=>d.classList.toggle('active',j===i));
-}
-function homeSlide(dir){homeIdx=(homeIdx+dir+homeTotal)%homeTotal;goHome(homeIdx);resetHomeAuto()}
-function startHomeAuto(){homeTimer=setInterval(()=>homeSlide(1),4000)}
-function resetHomeAuto(){clearInterval(homeTimer);startHomeAuto()}
-
-/* GALLERY SLIDER */
-let galIdx=0,galTimer;
-function buildGalleryThumbs(){
-  const g=document.getElementById('galleryGrid');
-  if(!g)return;
-  g.innerHTML='';
-  for(let i=0;i<GAL_TOTAL;i++){
-    const t=document.createElement('div');
-    const isVideo=(GALLERY_IMAGES[i]===null);
-    t.className='gallery-thumb'+(i===0?' active':'')+(isVideo?' video-thumb':'');
-    if(!isVideo){
-      const img=document.createElement('img');
-      img.src=GALLERY_IMAGES[i];
-      img.alt='KMF '+(i+1);
-      t.appendChild(img);
-    } else {
-      t.innerHTML='📹';
-    }
-    t.onclick=(()=>{const ii=i;return()=>goGal(ii)})();
-    g.appendChild(t);
-  }
-}
-function goGal(i){
-  galIdx=i;
-  document.getElementById('galSlider').style.transform=`translateX(-${i*100}%)`;
-  document.querySelectorAll('#galleryGrid .gallery-thumb').forEach((t,j)=>t.classList.toggle('active',j===i));
-}
-function galSlide(dir){galIdx=(galIdx+dir+GAL_TOTAL)%GAL_TOTAL;goGal(galIdx);resetGalAuto()}
-function startGalAuto(){galTimer=setInterval(()=>galSlide(1),4500)}
-function resetGalAuto(){clearInterval(galTimer);startGalAuto()}
-
-/* LIGHTBOX — only for photo slides */
-function openLightbox(idx){
-  const src=GALLERY_IMAGES[idx];
-  if(!src)return; // video slide, skip lightbox
-  const lb=document.getElementById('lightbox');
-  const img=document.getElementById('lightboxImg');
-  img.src=src;
-  img.alt='Gallery Image '+(idx+1);
-  lb.classList.add('open');
-}
-function closeLightbox(e){
-  if(e&&e.target===document.getElementById('lightboxImg'))return;
-  document.getElementById('lightbox').classList.remove('open');
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open')});
-</script>
+  <script>
+    (function() {
+      window.addEventListener('load', ()=>{
+        document.body.classList.add('loaded');
+        document.getElementById('loading').classList.add('hidden');
+      });
+      // slideshow
+      let slides = document.querySelectorAll('.slideshow');
+      let idx = 0;
+      setInterval(()=>{
+        slides[idx].classList.remove('active');
+        idx = (idx+1) % slides.length;
+        slides[idx].classList.add('active');
+      }, 4000);
+      // navbar
+      window.addEventListener('scroll', ()=>{
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>50);
+        let h = document.documentElement.scrollHeight - window.innerHeight;
+        document.getElementById('progress-bar').style.width = (window.scrollY/h)*100 +"%";
+      });
+      document.getElementById('menuToggle').addEventListener('click', ()=>{
+        document.getElementById('navLinks').classList.toggle('active');
+      });
+      document.getElementById('copyRek').addEventListener('click', ()=>{
+        navigator.clipboard.writeText('004001011026534');
+        let t = document.getElementById('toast');
+        t.style.display='block';
+        setTimeout(()=> t.style.display='none', 2000);
+      });
+      // particles
+      const canvas = document.createElement('canvas');
+      document.getElementById('particles').appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      let particles = [];
+      for(let i=0;i<45;i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*3+1, col:Math.random()>0.5?'red':'white'});
+      function anim(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p=>{
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle=p.col; ctx.shadowBlur=14; ctx.shadowColor=p.col; ctx.fill();
+          p.y-=0.3; if(p.y<0)p.y=canvas.height;
+        });
+        requestAnimationFrame(anim);
+      }
+      anim();
+      window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
+    })();
+  </script>
 </body>
 </html>
